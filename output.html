@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AI Chat</title>
+</head>
+<body>
+<h1>Ask something!</h1>
+
+<form th:action="@{/ai/generate}" method="post">
+    <p>
+        Prompt:
+        <input type="text" name="message" placeholder="Enter your message" required />
+    </p>
+    <button type="submit">Generate</button>
+</form>
+
+<div th:if="${output}">
+    <h2>Response:</h2>
+    <p th:text="${output}">[AI response will appear here]</p>
+</div>
+
+</body>
+</html>
