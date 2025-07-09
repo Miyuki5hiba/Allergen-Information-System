@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Food</title>
+</head>
+<body>
+    <h1>Food Form</h1>
+    <form action="#" th:action="@{/newFood}" th:object="${food}" method="post">
+        <p>Name: <input type="text" th:field="*{name}" /></p>
+        <p><input type="submit" value="Submit" /></p>
+    </form>
+
+    <a href="/allFood">Back</a>
+</body>
+</html>

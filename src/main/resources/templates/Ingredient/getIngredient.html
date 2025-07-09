@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Get Ingredient</title>
+</head>
+<body>
+<table border="1">
+  <thead>
+  <tr>
+    <th>&nbsp Name &nbsp</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td th:text = "${ingredient.name}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<form action="#" th:action="@{/allIngredients}" method="get">
+  <input type="submit" value="Back" />
+</form>
+</body>
+</html>

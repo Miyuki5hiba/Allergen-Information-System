@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Testing WebUI on mysql data Index</title>
+    <link rel="stylesheet" type="text/css" href="mainmenu.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <a href="/allFood">View All foods</a>
+
+    <a href="/allIngredients">View All Ingredients</a>
+
+    <a href="/allRecipes">View All Recipes</a>
+
+    <!--    <form action="#" th:action="@{/allFood}" method="get">-->
+<!--        <input type="submit" value="Home" />-->
+<!--    </form>-->
+    <form action="#" th:action="@{/allFood}" method="get">
+        <input type="submit" value="View All foods" />
+    </form>
+
+    <form action="#" th:action="@{/allIngredients}" method="get">
+        <input type="submit" value="View All Ingredients" />
+    </form>
+
+    <form href="/allRecipes" method="get">
+        <input type="submit" value="View All Recipes" />
+    </form>
+
+
+</body>
+</html>

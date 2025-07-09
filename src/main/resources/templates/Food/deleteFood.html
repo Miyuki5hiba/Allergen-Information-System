@@ -1,0 +1,39 @@
+<!--This is to test how to return the html page and the entity at the same time-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Food</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>&nbsp ID &nbsp</th>
+        <th>&nbsp Name &nbsp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text = "${food.id}"></td>
+        <td th:text = "${food.name}"></td>
+    </tr>
+    </tbody>
+</table>
+<table>
+    <td>
+        <a href="/allFood">Back</a>
+    </td>
+    <td>
+        <form th:action="@{/deleteFood}" method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <input type="hidden" name="foodId" th:value="${food.id}" />
+            <input type="submit" value="Confirm Delete" />
+        </form>
+
+
+    </td>
+</table>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Modify Ingredient</title>
+</head>
+<body>
+<form action="#" th:action="@{/modifyIngredient}" th:object="${ingredient}" method="post">
+  <input type="hidden" name="_method" value="put" />
+  <input type="hidden" name="ingredientId" th:value="${ingredient.id}" />
+
+  <p>Name: <input type="text" th:field="*{name}" value="ingredient.name"/></p>
+  <p><input type="submit" value="Submit" /></p>
+</form>
+<a href="/allIngredients">Back</a>
+</body>
+</html>

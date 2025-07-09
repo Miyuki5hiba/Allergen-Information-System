@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Ingredient</title>
+</head>
+<body>
+<table border="1">
+  <thead>
+  <tr>
+    <th>&nbsp id &nbsp</th>
+    <th>&nbsp Food &nbsp</th>
+    <th>&nbsp Ingredient &nbsp</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td th:text = "${recipe.id}"></td>
+    <td th:text = "${recipe.food.name}"></td>
+    <td th:text = "${recipe.ingredient.name}"></td>
+  </tr>
+  </tbody>
+</table>
+<table>
+  <td>
+    <a href="/allRecipes">Back</a>
+  </td>
+  <td>
+    <form th:action="@{/deleteRecipe}" method="post">
+      <input type="hidden" name="_method" value="delete" />
+      <input type="hidden" name="index" th:value="${recipe.id}" />
+      <input type="submit" value="Confirm Delete" />
+    </form>
+  </td>
+</table>
+</body>
+</html>

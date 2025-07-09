@@ -1,0 +1,47 @@
+<!--This file iterates through all the currently stored food items and displays them-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Display All foods</title>
+</head>
+<body>
+<H1>FOOD</H1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>&nbsp Id &nbsp</th>
+            <th>&nbsp Name &nbsp</th>
+            <th>&nbsp Delete &nbsp</th>
+            <th>&nbsp Edit &nbsp</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each = "food : ${foods}">
+            <td th:text = "${food.id}"></td>
+            <td th:text = "${food.name}"></td>
+            <td>
+                <form action="#" th:action="@{/deleteFood}" method="get">
+                    <input type = "hidden" name ="foodId" th:value="${food.id}">
+                    <input type="submit" value="Delete" />
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/modifyFood}" method="get">
+                    <input type = "hidden" name ="foodId" th:value="${food.id}">
+                    <input type="submit" value="Edit" />
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<form action="#" th:action="@{/newFood}" method="get">
+    <input type="submit" value="New Food" />
+</form>
+<form action="#" th:action="@{/home}" method="get">
+    <input type="submit" value="Home" />
+</form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+head{
+	font-family: 'Quicksand', sans-serif;
+	font-size: 20px;
+	background-color: silver;
+}
+
+body {
+	font-family: 'Quicksand', sans-serif;
+	font-size: 20px;
+	background-color: orchid;
+}
+
+h1 {
+	font-size: 40px;
+	color: silver;
+}
+
+
+li {
+	color: orchid;
+}
+
+table,
+th,
+td {
+	vertical-align: top;
+}
+
+.button {
+	background-color: #102F33;
+	border: none;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 20px 10px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	border-radius: 50px;
+	padding: 15px 30px;
+}
+
+.button:hover {
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+	text-color: red;
+}
+
+.buttonface{
+	background-color: #66bec9;
+	width: 40px;
+	height: 20px;
+}

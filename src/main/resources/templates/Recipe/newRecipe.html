@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New Recipe</title>
+</head>
+<body>
+  <h1>Ingredient Form</h1>
+  <form action="#" th:action="@{/newRecipe}" th:object="${recipe}" method="post">
+    <p>Food:
+      <select name="foodId">
+        <option th:each="food : ${foods}"
+                th:value="${food.id}"
+                th:text="${food.name}">
+        </option>
+      </select>
+    </p>
+
+    <p>Ingredient:
+      <select name = "ingredientId">
+        <option th:each="ingredient : ${ingredients}"
+                th:value="${ingredient.id}"
+                th:text="${ingredient.name}">
+        </option>
+      </select>
+    </p>
+
+    <input type="submit" value="Submit" />
+  </form>
+
+
+  <a href="/allRecipes">Back</a>
+
+</body>
+</html>
