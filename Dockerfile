@@ -15,7 +15,8 @@ RUN mvn dependency:go-offline -B || true
 COPY src ./src
 
 # Build the application (skip tests for faster builds)
-RUN mvn clean package -DskipTests
+RUN #mvn clean package -DskipTests
+RUN mvn clean package
 
 # ── Stage 2: Create Minimal Runtime Image ──────────────────────
 FROM eclipse-temurin:17-jre-alpine
