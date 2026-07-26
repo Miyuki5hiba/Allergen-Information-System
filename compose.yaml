@@ -29,18 +29,50 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+      goodnightworld:
+        condition: service_started
     environment:
       - 'SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mydatabase?allowPublicKeyRetrieval=true&useSSL=false'
       - 'SPRING_DATASOURCE_USERNAME=myuser'
       - 'SPRING_DATASOURCE_PASSWORD=secret'
+      - 'GOODNIGHT_URL=http://goodnightworld:8085'
     ports:
       - '8080:8080'
     networks:
       - allergen-network
     restart: unless-stopped
 
+  goodnightworld:
+    build:
+      context: ../GoodNight
+      dockerfile: Dockerfile
+    container_name: goodnightworld
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - '8085:8085'
+    depends_on:
+      postgres:
+        condition: service_started
+    networks:
+      - allergen-network
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: goodnightworld-postgres
+    environment:
+      POSTGRES_DB: goodnightdb
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - allergen-network
+    restart: unless-stopped
+
 volumes:
   mysql-data:
+  postgres-data:
 
 networks:
   allergen-network:
