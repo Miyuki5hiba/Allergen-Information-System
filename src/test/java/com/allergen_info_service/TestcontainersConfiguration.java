@@ -9,6 +9,7 @@ import org.testcontainers.utility.DockerImageName;
 @TestConfiguration(proxyBeanMethods = false)
 class TestcontainersConfiguration {
 
+	// Defines a Bean in a configuration class, gives full control over bean creation and lifecycle
 	@Bean
 	@ServiceConnection
 	MySQLContainer<?> mysqlContainer() {

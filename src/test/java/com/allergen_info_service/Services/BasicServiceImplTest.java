@@ -25,6 +25,9 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Mockito "mocks" the class or creates "fakes" that are used to test the logic and implentation
+ */
 @ExtendWith(MockitoExtension.class)
 class BasicServiceImplTest {
 

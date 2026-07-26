@@ -8,10 +8,12 @@ public class Recipe {
     @GeneratedValue
     private Long id;
 
+    //Change to many to many
     @ManyToOne
     @JoinColumn(name = "Food")
     private Food food;
 
+    //Change to many to many
     @ManyToOne
     @JoinColumn(name = "Ingredient")
     private Ingredient ingredient;

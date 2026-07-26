@@ -4,16 +4,20 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
-
+// Marks class as a JPA entity
 @Entity
 public class Food {
+    //Defines primary key
     @Id
+    //Auto generates primary key values
     @GeneratedValue
     private Long id;
 
+    // Maps class field to table column
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    // Defines relationship with specified table/entity
     @OneToMany(mappedBy = "food")
     private Set<Recipe> recipes;
 

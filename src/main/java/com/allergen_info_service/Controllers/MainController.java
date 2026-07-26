@@ -3,18 +3,88 @@ package com.allergen_info_service.Controllers;
 import com.allergen_info_service.Models.Food;
 import com.allergen_info_service.Models.Ingredient;
 import com.allergen_info_service.Services.BasicServiceImpl;
+import com.allergen_info_service.Services.GoodNightRestClientImpl;
+//import tools.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.ui.Model;
 
-
+/**
+ * Connects the html requests with  the proper method calls which then call the methods from the necessary service(s)
+ *      The html requests are redirected using the @RequestMapping annotation
+ *      Specific GPPD requests are done with their specific mappings:
+ *      @GetMapping
+ *      @PostMapping
+ *      @PutMapping
+ *      @DeleteMapping
+ * hiding the business logic and following the concept of abstraction
+ *
+ * Controller has any string outputs be interpretted as paths to html view that need to be rendered
+ * Using RESTController would instead have the ouput be read as is
+ *
+ * to optionally choose what to get read as is or not, use ResponseBody annotation for the methods that would return
+ * the raw data
+ *
+ * RequestBody annotation is used to...
+ *
+ * FIND OUT WHAT EACH ANNOTTATION DOES!!!!
+ */
 @Controller
 //@RequestMapping(path = "/")
 public class MainController {
+    // Autowired injects the necessary dependencies allowing for the creation of objects without using "new"
     @Autowired
     BasicServiceImpl service;
+    @Autowired
+    GoodNightRestClientImpl night;
+
+    // Change such that it only calls service methods and doesn't have any business methods
+    @ResponseBody
+    @PostMapping("/response")
+    public ResponseEntity<JsonNode> postController(/**Normally an @RequestBody is used here to
+                                              send the desired information to the other service**/
+                                         @RequestBody JsonNode rawJson){
+
+        if (rawJson.has("name")) {
+            String snackName = rawJson.get("name").asText();
+            System.out.println("Snack's name: " + snackName);
+        }
+//        night.getSnack();
+        return ResponseEntity.status(200).body(rawJson);
+    }
+//    @GetMapping("/request")
+//    public ResponseEntity<JsonNode> postController(/**Normally an @RequestBody is used here to
+//                                              send the desired information to the other service**/
+//                                         @RequestBody JsonNode rawJson){
+////        if (rawJson.has("name")) {
+////            String snackName = rawJson.get("name").asText();
+////            System.out.println("Snack's name: " + snackName);
+////        }
+//        return night.getSnack(rawJson);
+//
+////        return ResponseEntity.ok(night.getSnack(rawJson));
+//    }
+
+// Change such that it only calls service methods and doesn't have any business methods
+    @GetMapping("/request")
+    public ResponseEntity getter(/**Normally an @RequestBody is used here to
+                                              send the desired information to the other service**/
+                // Binds the HTTP request body to a java object, Commonly used with POST and PUT requests
+                                         @RequestBody JsonNode rawJson){
+//        if (rawJson.has("name")) {
+//            String snackName = rawJson.get("name").asText();
+//            System.out.println("Snack's name: " + snackName);
+//        }
+//        return night.getSnack(rawJson);
+        String response = night.getSnack(rawJson);
+
+        return ResponseEntity.ok(response);
+    }
 
     @GetMapping({"/", "/home"})
     public String home(){
@@ -31,6 +101,7 @@ public class MainController {
         return service.newFood(food, model);
     }
 
+    //Request Params reads the query parameters directly from the request URL. Used for optional or filtering inputs.
     @GetMapping(path="/getFood")
     public String getFood(@RequestParam long foodId, Model model){
         return service.getFood(foodId,model);

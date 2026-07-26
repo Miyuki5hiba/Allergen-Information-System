@@ -8,9 +8,18 @@ import com.allergen_info_service.Repositorys.IngredientRepository;
 import com.allergen_info_service.Repositorys.RecipeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestTemplate;
 
+// Services are called here, not in the controller
+
+// defines that this is a service, so business logic is defined here and helps with readability
 @Service
 public class BasicServiceImpl implements BasicService {
 
@@ -21,13 +30,25 @@ public class BasicServiceImpl implements BasicService {
     @Autowired
     private RecipeRepository recipeRepository;
 
+    @Autowired
+    private GoodNightRestClientImpl goodNight;
+
     public String home(){
         return "redirect:/";
     }
 
+
+//    @PostMapping
+//    public ResponseEntity postController(@RequestBody Snack snack){
+//
+//        return ResponseEntity.ok(HttpStatus.OK);
+//    }
+
     @Override
     public String newFoodForm(Model model){
+        goodNight.getNight();
         model.addAttribute("food", new Food());
+        goodNight.getNight();
         return "Food/newFood";
     }
 
