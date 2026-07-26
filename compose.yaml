@@ -49,6 +49,7 @@ services:
     container_name: goodnightworld
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - 'FEIGN_CLIENT_CONFIG_DYNAMIC_RECEIVER_URL=http://allergen-app:8080/response'
     ports:
       - '8085:8085'
     depends_on:
