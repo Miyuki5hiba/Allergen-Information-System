@@ -44,7 +44,7 @@ services:
 
   goodnightworld:
     build:
-      context: ../GoodNight
+      context: ../GoodNightWorld
       dockerfile: Dockerfile
     container_name: goodnightworld
     environment:
